@@ -1,0 +1,594 @@
+{
+  "appTitle": "Management Revision Quiz (Non-Typing)",
+  "quizType": "non-typing",
+  "chapters": [
+    {
+      "chapterId": 1,
+      "title": "Chapter 1: Management for Turbulent Times",
+      "questions": [
+        {
+          "id": "1-1",
+          "type": "matching",
+          "question": "Match each level of management with its main responsibility.",
+          "left": [
+            "Top managers",
+            "Middle managers",
+            "First-line managers",
+            "Non-managerial employees"
+          ],
+          "right": [
+            "Perform assigned tasks",
+            "Make organization-wide decisions",
+            "Supervise non-managerial employees",
+            "Implement plans and supervise first-line managers"
+          ],
+          "correctMatches": {
+            "Top managers": "Make organization-wide decisions",
+            "Middle managers": "Implement plans and supervise first-line managers",
+            "First-line managers": "Supervise non-managerial employees",
+            "Non-managerial employees": "Perform assigned tasks"
+          }
+        },
+        {
+          "id": "1-2",
+          "type": "matching",
+          "question": "Match the management level with the correct example.",
+          "left": [
+            "Top manager",
+            "Middle manager",
+            "First-line manager",
+            "Non-managerial employee"
+          ],
+          "right": [
+            "Supervisor",
+            "Chief Executive Officer (CEO)",
+            "Department manager",
+            "Sales assistant"
+          ],
+          "correctMatches": {
+            "Top manager": "Chief Executive Officer (CEO)",
+            "Middle manager": "Department manager",
+            "First-line manager": "Supervisor",
+            "Non-managerial employee": "Sales assistant"
+          }
+        },
+        {
+          "id": "1-3",
+          "type": "ordering",
+          "question": "Arrange the levels of management from highest to lowest.",
+          "correctOrder": [
+            "Top managers",
+            "Middle managers",
+            "First-line managers",
+            "Non-managerial employees"
+          ]
+        },
+        {
+          "id": "1-4",
+          "type": "matching",
+          "question": "Match each management function with its description.",
+          "left": ["Planning", "Organizing", "Leading", "Controlling"],
+          "right": [
+            "Monitoring performance and taking corrective action",
+            "Setting goals and strategies",
+            "Arranging tasks and resources",
+            "Motivating and directing employees"
+          ],
+          "correctMatches": {
+            "Planning": "Setting goals and strategies",
+            "Organizing": "Arranging tasks and resources",
+            "Leading": "Motivating and directing employees",
+            "Controlling": "Monitoring performance and taking corrective action"
+          }
+        },
+        {
+          "id": "1-5",
+          "type": "matching",
+          "question": "Match the managerial role category with its examples.",
+          "left": ["Interpersonal roles", "Informational roles", "Decisional roles"],
+          "right": [
+            "Figurehead, Leader, Liaison",
+            "Monitor, Disseminator, Spokesperson",
+            "Entrepreneur, Disturbance handler, Negotiator"
+          ],
+          "correctMatches": {
+            "Interpersonal roles": "Figurehead, Leader, Liaison",
+            "Informational roles": "Monitor, Disseminator, Spokesperson",
+            "Decisional roles": "Entrepreneur, Disturbance handler, Negotiator"
+          }
+        },
+        {
+          "id": "1-6",
+          "type": "matching",
+          "question": "Match the managerial skill with its meaning.",
+          "left": ["Technical skill", "Human skill", "Conceptual skill"],
+          "right": [
+            "Ability to think analytically and see the organization as a whole",
+            "Job-specific knowledge and techniques",
+            "Ability to work well with others"
+          ],
+          "correctMatches": {
+            "Technical skill": "Job-specific knowledge and techniques",
+            "Human skill": "Ability to work well with others",
+            "Conceptual skill": "Ability to think analytically and see the organization as a whole"
+          }
+        },
+        {
+          "id": "1-7",
+          "type": "matching",
+          "question": "Match each managerial level with the MOST important skill.",
+          "left": ["Top managers", "Middle managers", "First-line managers"],
+          "right": ["Conceptual skill", "Human skill", "Technical skill"],
+          "correctMatches": {
+            "Top managers": "Conceptual skill",
+            "Middle managers": "Human skill",
+            "First-line managers": "Technical skill"
+          }
+        },
+        {
+          "id": "1-8",
+          "type": "matching",
+          "question": "Match the rewards and challenges of being a manager.",
+          "left": [
+            "Recognition and status",
+            "Attractive compensation",
+            "Dealing with many personalities",
+            "Limited resources"
+          ],
+          "right": ["Reward", "Reward", "Challenge", "Challenge"],
+          "correctMatches": {
+            "Recognition and status": "Reward",
+            "Attractive compensation": "Reward",
+            "Dealing with many personalities": "Challenge",
+            "Limited resources": "Challenge"
+          }
+        }
+      ]
+    },
+    {
+      "chapterId": 2,
+      "title": "Chapter 2: Planning, Goal Setting & Decision Making",
+      "questions": [
+        {
+          "id": "2-1",
+          "type": "matching",
+          "question": "Match each reason for planning with the correct explanation.",
+          "left": [
+            "Provides direction",
+            "Reduces uncertainty",
+            "Minimizes waste and redundancy",
+            "Sets standards for controlling"
+          ],
+          "right": [
+            "Helps employees stay focused and aligned with objectives",
+            "Helps managers anticipate change and prepare responses",
+            "Coordinates tasks to avoid repeating work and wasting resources",
+            "Creates benchmarks to compare actual performance with goals"
+          ],
+          "correctMatches": {
+            "Provides direction": "Helps employees stay focused and aligned with objectives",
+            "Reduces uncertainty": "Helps managers anticipate change and prepare responses",
+            "Minimizes waste and redundancy": "Coordinates tasks to avoid repeating work and wasting resources",
+            "Sets standards for controlling": "Creates benchmarks to compare actual performance with goals"
+          }
+        },
+        {
+          "id": "2-2",
+          "type": "matching",
+          "question": "Match the term with the correct meaning.",
+          "left": ["Goals (Objectives)", "Plans"],
+          "right": [
+            "Desired outcomes or targets",
+            "Documents outlining how goals will be met (resources, schedules, actions)"
+          ],
+          "correctMatches": {
+            "Goals (Objectives)": "Desired outcomes or targets",
+            "Plans": "Documents outlining how goals will be met (resources, schedules, actions)"
+          }
+        },
+        {
+          "id": "2-3",
+          "type": "matching",
+          "question": "Match each type of goals with the correct description.",
+          "left": ["Financial goals", "Strategic goals", "Stated goals", "Real goals"],
+          "right": [
+            "Goals related to internal financial performance",
+            "Goals related to performance relative to external environment (competitors, market)",
+            "Official goals an organization says it wants stakeholders to believe",
+            "Goals actually pursued based on members’ actions and priorities"
+          ],
+          "correctMatches": {
+            "Financial goals": "Goals related to internal financial performance",
+            "Strategic goals": "Goals related to performance relative to external environment (competitors, market)",
+            "Stated goals": "Official goals an organization says it wants stakeholders to believe",
+            "Real goals": "Goals actually pursued based on members’ actions and priorities"
+          }
+        },
+        {
+          "id": "2-4",
+          "type": "matching",
+          "question": "Match each type of plan with the correct clue/example style.",
+          "left": ["Strategic plans", "Operational plans", "Long-term plans", "Short-term plans"],
+          "right": [
+            "Broad plans for the entire organization (vision/mission)",
+            "Narrow plans for a specific area (e.g., training program)",
+            "Time frame beyond three years",
+            "Time frame one year or less"
+          ],
+          "correctMatches": {
+            "Strategic plans": "Broad plans for the entire organization (vision/mission)",
+            "Operational plans": "Narrow plans for a specific area (e.g., training program)",
+            "Long-term plans": "Time frame beyond three years",
+            "Short-term plans": "Time frame one year or less"
+          }
+        },
+        {
+          "id": "2-5",
+          "type": "matching",
+          "question": "Match each plan type with the best description.",
+          "left": ["Specific plans", "Directional plans", "Single-use plans", "Standing plans"],
+          "right": [
+            "Clearly defined and leaves no room for interpretation",
+            "Flexible guidelines that provide general direction",
+            "One-time plan designed for a unique situation",
+            "Ongoing plan used repeatedly (policies/procedures)"
+          ],
+          "correctMatches": {
+            "Specific plans": "Clearly defined and leaves no room for interpretation",
+            "Directional plans": "Flexible guidelines that provide general direction",
+            "Single-use plans": "One-time plan designed for a unique situation",
+            "Standing plans": "Ongoing plan used repeatedly (policies/procedures)"
+          }
+        },
+        {
+          "id": "2-6",
+          "type": "ordering",
+          "question": "Arrange the steps in goal setting in the correct order.",
+          "correctOrder": [
+            "Review the organization’s mission (purpose)",
+            "Evaluate available resources (realistic)",
+            "Determine the goals (measurable, specific, time frame)",
+            "Write down and communicate goals",
+            "Review results and adjust goals if needed"
+          ]
+        },
+        {
+          "id": "2-7",
+          "type": "matching",
+          "question": "Match the criteria of well-written goals with the correct meaning.",
+          "left": [
+            "Outcome-focused",
+            "Measurable",
+            "Time frame",
+            "Challenging yet attainable",
+            "Written down",
+            "Communicated"
+          ],
+          "right": [
+            "States results, not just activities",
+            "Can be quantified and tracked",
+            "Has a clear deadline",
+            "Difficult but realistic",
+            "Recorded so it becomes visible evidence",
+            "Shared with people who need to know"
+          ],
+          "correctMatches": {
+            "Outcome-focused": "States results, not just activities",
+            "Measurable": "Can be quantified and tracked",
+            "Time frame": "Has a clear deadline",
+            "Challenging yet attainable": "Difficult but realistic",
+            "Written down": "Recorded so it becomes visible evidence",
+            "Communicated": "Shared with people who need to know"
+          }
+        },
+        {
+          "id": "2-8",
+          "type": "ordering",
+          "question": "Arrange the Decision-Making Process steps in the correct order.",
+          "correctOrder": [
+            "Identify the problem",
+            "Identify decision criteria",
+            "Allocate weights to the criteria",
+            "Develop alternatives",
+            "Analyze alternatives",
+            "Select an alternative",
+            "Implement the alternative",
+            "Evaluate decision effectiveness"
+          ]
+        },
+        {
+          "id": "2-9",
+          "type": "matching",
+          "question": "Match each decision concept with the best description.",
+          "left": [
+            "Rational decision-making",
+            "Bounded rationality",
+            "Satisficing",
+            "Escalation of commitment"
+          ],
+          "right": [
+            "Logical and consistent choices to maximize value",
+            "Rational decisions limited by time, info, and human ability",
+            "Choosing a solution that is 'good enough'",
+            "Continuing a failing course because of past investment"
+          ],
+          "correctMatches": {
+            "Rational decision-making": "Logical and consistent choices to maximize value",
+            "Bounded rationality": "Rational decisions limited by time, info, and human ability",
+            "Satisficing": "Choosing a solution that is 'good enough'",
+            "Escalation of commitment": "Continuing a failing course because of past investment"
+          }
+        },
+        {
+          "id": "2-10",
+          "type": "matching",
+          "question": "Match each approach with the correct clue.",
+          "left": ["Intuitive decision-making", "Evidence-based management (EBMgt)"],
+          "right": [
+            "Uses gut feeling and experience rather than lots of data",
+            "Uses facts, data, and research as the best available evidence"
+          ],
+          "correctMatches": {
+            "Intuitive decision-making": "Uses gut feeling and experience rather than lots of data",
+            "Evidence-based management (EBMgt)": "Uses facts, data, and research as the best available evidence"
+          }
+        },
+        {
+          "id": "2-11",
+          "type": "matching",
+          "question": "Decision biases (1/2): Match each bias with the best example.",
+          "left": [
+            "Overconfidence bias",
+            "Immediate gratification bias",
+            "Anchoring effect",
+            "Selective perception bias",
+            "Confirmation bias",
+            "Framing bias"
+          ],
+          "right": [
+            "Believing you will succeed easily despite little experience",
+            "Choosing a quick reward instead of a better long-term outcome",
+            "Relying too much on first information (initial price) when judging later",
+            "Only noticing info that supports your existing view",
+            "Looking only for evidence that supports your belief and ignoring opposites",
+            "Decision changes depending on how the same facts are presented"
+          ],
+          "correctMatches": {
+            "Overconfidence bias": "Believing you will succeed easily despite little experience",
+            "Immediate gratification bias": "Choosing a quick reward instead of a better long-term outcome",
+            "Anchoring effect": "Relying too much on first information (initial price) when judging later",
+            "Selective perception bias": "Only noticing info that supports your existing view",
+            "Confirmation bias": "Looking only for evidence that supports your belief and ignoring opposites",
+            "Framing bias": "Decision changes depending on how the same facts are presented"
+          }
+        },
+        {
+          "id": "2-12",
+          "type": "matching",
+          "question": "Decision biases (2/2): Match each bias with the best example.",
+          "left": [
+            "Availability bias",
+            "Representativeness bias",
+            "Randomness bias",
+            "Sunk costs error",
+            "Self-serving bias",
+            "Hindsight bias"
+          ],
+          "right": [
+            "Overestimating something because it is recent/vivid in memory (news crash)",
+            "Judging likelihood based on stereotypes (suit = lawyer)",
+            "Believing random events have meaning (lucky item causes success)",
+            "Letting past spending affect current choices even though it can’t be recovered",
+            "Taking credit for success but blaming failure on external factors",
+            "After results, believing you 'knew it all along'"
+          ],
+          "correctMatches": {
+            "Availability bias": "Overestimating something because it is recent/vivid in memory (news crash)",
+            "Representativeness bias": "Judging likelihood based on stereotypes (suit = lawyer)",
+            "Randomness bias": "Believing random events have meaning (lucky item causes success)",
+            "Sunk costs error": "Letting past spending affect current choices even though it can’t be recovered",
+            "Self-serving bias": "Taking credit for success but blaming failure on external factors",
+            "Hindsight bias": "After results, believing you 'knew it all along'"
+          }
+        }
+      ]
+    },
+    {
+      "chapterId": 3,
+      "title": "Chapter 3: Designing Adaptive Organizations and Managing Change",
+      "questions": [
+        {
+          "id": "3-1",
+          "type": "matching",
+          "question": "Match each key element of organizational design with its correct description.",
+          "left": [
+            "Work specialization",
+            "Departmentalization",
+            "Chain of command",
+            "Span of control",
+            "Centralization and decentralization",
+            "Formalization"
+          ],
+          "right": [
+            "Dividing work into separate tasks so individuals focus on specific activities",
+            "Grouping jobs based on functions, products, geography, process, or customers",
+            "Clear line of authority showing who reports to whom",
+            "Number of employees a manager can efficiently supervise",
+            "Degree to which decision-making is concentrated or spread out",
+            "Extent to which rules and procedures standardize jobs"
+          ],
+          "correctMatches": {
+            "Work specialization": "Dividing work into separate tasks so individuals focus on specific activities",
+            "Departmentalization": "Grouping jobs based on functions, products, geography, process, or customers",
+            "Chain of command": "Clear line of authority showing who reports to whom",
+            "Span of control": "Number of employees a manager can efficiently supervise",
+            "Centralization and decentralization": "Degree to which decision-making is concentrated or spread out",
+            "Formalization": "Extent to which rules and procedures standardize jobs"
+          }
+        },
+        {
+          "id": "3-2",
+          "type": "matching",
+          "question": "Match each purpose of organizing with the correct explanation.",
+          "left": [
+            "Divides work into jobs and departments",
+            "Assigns tasks and responsibilities",
+            "Coordinates diverse tasks",
+            "Clusters jobs into units",
+            "Establishes relationships",
+            "Establishes formal lines of authority",
+            "Allocates organizational resources"
+          ],
+          "right": [
+            "Breaks work into manageable tasks and departments",
+            "Clarifies who is responsible for each task",
+            "Ensures departments work together smoothly",
+            "Groups similar jobs for efficiency",
+            "Defines how individuals and groups interact",
+            "Clarifies who has authority and decision power",
+            "Distributes money, people, and equipment where needed"
+          ],
+          "correctMatches": {
+            "Divides work into jobs and departments": "Breaks work into manageable tasks and departments",
+            "Assigns tasks and responsibilities": "Clarifies who is responsible for each task",
+            "Coordinates diverse tasks": "Ensures departments work together smoothly",
+            "Clusters jobs into units": "Groups similar jobs for efficiency",
+            "Establishes relationships": "Defines how individuals and groups interact",
+            "Establishes formal lines of authority": "Clarifies who has authority and decision power",
+            "Allocates organizational resources": "Distributes money, people, and equipment where needed"
+          }
+        },
+        {
+          "id": "3-3",
+          "type": "matching",
+          "question": "Match each type of departmentalization with the correct description.",
+          "left": ["Functional", "Product", "Geographical", "Process", "Customer"],
+          "right": [
+            "Grouping jobs by functions such as HR, marketing, or finance",
+            "Grouping jobs based on product lines",
+            "Grouping jobs based on regions or locations",
+            "Grouping jobs based on stages of production or workflow",
+            "Grouping jobs based on different customer needs"
+          ],
+          "correctMatches": {
+            "Functional": "Grouping jobs by functions such as HR, marketing, or finance",
+            "Product": "Grouping jobs based on product lines",
+            "Geographical": "Grouping jobs based on regions or locations",
+            "Process": "Grouping jobs based on stages of production or workflow",
+            "Customer": "Grouping jobs based on different customer needs"
+          }
+        },
+        {
+          "id": "3-4",
+          "type": "matching",
+          "question": "Match each force of change with the correct example or explanation.",
+          "left": [
+            "New organizational strategy",
+            "Change in workforce composition",
+            "New equipment or technology",
+            "Changing employee attitudes",
+            "Changing consumer needs",
+            "New governmental laws",
+            "Economic change",
+            "Technological advancement"
+          ],
+          "right": [
+            "Company adopts a new approach to compete in the market",
+            "Hiring new employees or changing job roles",
+            "Introducing new machines or software",
+            "Employees’ values or motivation shift",
+            "Customers demand new or better products",
+            "New regulations force organizations to comply",
+            "Recession or economic growth affects business decisions",
+            "Rapid development of new digital tools"
+          ],
+          "correctMatches": {
+            "New organizational strategy": "Company adopts a new approach to compete in the market",
+            "Change in workforce composition": "Hiring new employees or changing job roles",
+            "New equipment or technology": "Introducing new machines or software",
+            "Changing employee attitudes": "Employees’ values or motivation shift",
+            "Changing consumer needs": "Customers demand new or better products",
+            "New governmental laws": "New regulations force organizations to comply",
+            "Economic change": "Recession or economic growth affects business decisions",
+            "Technological advancement": "Rapid development of new digital tools"
+          }
+        },
+        {
+          "id": "3-5",
+          "type": "matching",
+          "question": "Match each type of organizational change with its meaning.",
+          "left": ["Strategy change", "Structure change", "Technology change", "People change"],
+          "right": [
+            "Modification in how the organization competes",
+            "Changes in hierarchy, teams, or reporting lines",
+            "Adoption of new tools or methods",
+            "Changes in employee attitudes, skills, or behaviors"
+          ],
+          "correctMatches": {
+            "Strategy change": "Modification in how the organization competes",
+            "Structure change": "Changes in hierarchy, teams, or reporting lines",
+            "Technology change": "Adoption of new tools or methods",
+            "People change": "Changes in employee attitudes, skills, or behaviors"
+          }
+        },
+        {
+          "id": "3-6",
+          "type": "matching",
+          "question": "Match each reason for resistance to change with the correct explanation.",
+          "left": [
+            "Uncertainty and ambiguity",
+            "Comfort of old habits",
+            "Fear of losing status or benefits",
+            "Belief change is not in best interest"
+          ],
+          "right": [
+            "Employees feel anxious about the unknown",
+            "People prefer familiar routines",
+            "Employees worry about job position or rewards",
+            "Employees feel the change does not align with goals"
+          ],
+          "correctMatches": {
+            "Uncertainty and ambiguity": "Employees feel anxious about the unknown",
+            "Comfort of old habits": "People prefer familiar routines",
+            "Fear of losing status or benefits": "Employees worry about job position or rewards",
+            "Belief change is not in best interest": "Employees feel the change does not align with goals"
+          }
+        },
+        {
+          "id": "3-7",
+          "type": "matching",
+          "question": "Match each technique for reducing resistance to change with its description.",
+          "left": [
+            "Education and communication",
+            "Participation",
+            "Facilitation and support",
+            "Negotiation",
+            "Manipulation and co-optation",
+            "Coercion"
+          ],
+          "right": [
+            "Explaining the need for change clearly to employees",
+            "Involving employees in the decision-making process",
+            "Providing training, counseling, and support",
+            "Offering something of value in exchange for cooperation",
+            "Influencing people indirectly or selectively presenting information",
+            "Using force, threats, or pressure to ensure compliance"
+          ],
+          "correctMatches": {
+            "Education and communication": "Explaining the need for change clearly to employees",
+            "Participation": "Involving employees in the decision-making process",
+            "Facilitation and support": "Providing training, counseling, and support",
+            "Negotiation": "Offering something of value in exchange for cooperation",
+            "Manipulation and co-optation": "Influencing people indirectly or selectively presenting information",
+            "Coercion": "Using force, threats, or pressure to ensure compliance"
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "nonTypingOnly": true,
+    "supportedQuestionTypes": ["matching", "ordering"],
+    "version": "1.0.0"
+  }
+}
