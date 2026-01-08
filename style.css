@@ -1,34 +1,41 @@
 :root{
-  --bg:#0b1220;
-  --card:#111a2e;
-  --text:#e5e7eb;
-  --muted:#9ca3af;
-  --border:rgba(255,255,255,.10);
-  --good:#22c55e;
-  --bad:#ef4444;
+  /* Your palette */
+  --bg: #F4F7FB;        /* very light blue-gray */
+  --primary: #3A6EA5;   /* calm blue */
+  --secondary: #4CAF50; /* soft green */
+  --text: #1F2933;      /* dark gray */
+  --accent: #F4C430;    /* soft yellow */
+
+  --card: #ffffff;
+  --muted: rgba(31, 41, 51, 0.65);
+  --border: rgba(31, 41, 51, 0.12);
+  --good: var(--secondary);
+  --bad: #ef4444;
 }
 
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:linear-gradient(180deg,#070b14,var(--bg));
-  color:var(--text);
+  background: var(--bg);
+  color: var(--text);
 }
 
 .topbar{
   position:sticky; top:0; z-index:5;
   display:flex; justify-content:space-between; align-items:center;
   padding:12px 14px;
-  background:rgba(10,15,28,.85);
+  background: rgba(244,247,251,0.9);
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--border);
 }
+
 .brand{display:flex; gap:10px; align-items:center}
 .logo{
   width:38px;height:38px;border-radius:12px;
   display:grid;place-items:center;
-  background:linear-gradient(135deg,#1f2937,#0ea5e9);
+  background: linear-gradient(135deg, var(--primary), #5aa6d6);
+  color: #fff;
   font-weight:800;
 }
 .title{font-weight:800}
@@ -43,18 +50,18 @@ body{
   gap:12px;
 }
 .card{
-  background:rgba(17,26,46,.9);
+  background: var(--card);
   border:1px solid var(--border);
   border-radius:16px;
   padding:14px;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
 .chapterCard{
   cursor:pointer;
   transition:transform .08s ease, border-color .08s ease;
 }
-.chapterCard:hover{transform:translateY(-2px); border-color:rgba(34,197,94,.25)}
+.chapterCard:hover{transform:translateY(-2px); border-color: rgba(58,110,165,.35)}
 .chapterTitle{font-weight:800; margin-bottom:6px}
 .chapterMeta{color:var(--muted); font-size:12px}
 
@@ -66,7 +73,7 @@ body{
   padding:6px 10px;
   border-radius:999px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
+  background: rgba(58,110,165,0.06);
 }
 
 .qtext{font-size:16px; font-weight:800; margin-bottom:10px; line-height:1.35;}
@@ -77,16 +84,16 @@ body{
   padding:12px;
   border-radius:12px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.06);
-  color:var(--text);
+  background: rgba(58,110,165,0.07);
+  color: var(--text);
   font-weight:800;
   cursor:pointer;
 }
 .btn:disabled{opacity:.45; cursor:not-allowed}
 .btn.primary{
-  background:linear-gradient(135deg, rgba(34,197,94,.95), rgba(16,185,129,.95));
+  background: linear-gradient(135deg, var(--secondary), #34d399);
   color:#06210f;
-  border-color:rgba(34,197,94,.25);
+  border-color: rgba(76,175,80,.35);
 }
 .btn.ghost{background:transparent}
 .actions{display:flex; gap:8px}
@@ -107,11 +114,11 @@ body{
   padding:10px;
   border-radius:12px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.05);
+  background: rgba(31,41,51,0.03);
   cursor:pointer;
   user-select:none;
 }
-.item.selected{outline:2px solid rgba(14,165,233,.7)}
+.item.selected{outline:2px solid rgba(58,110,165,.55)}
 .item.locked{opacity:.55; cursor:not-allowed}
 
 .pairs{display:flex; flex-direction:column; gap:8px}
@@ -120,7 +127,7 @@ body{
   padding:10px;
   border-radius:12px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
+  background: rgba(31,41,51,0.03);
 }
 .pair small{color:var(--muted)}
 
@@ -129,7 +136,7 @@ body{
   padding:10px 12px;
   border-radius:999px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.05);
+  background: rgba(31,41,51,0.03);
   cursor:pointer;
   user-select:none;
 }
@@ -139,7 +146,7 @@ body{
   padding:10px 12px;
   border-radius:12px;
   border:1px solid var(--border);
-  background:rgba(255,255,255,.03);
+  background: rgba(244,196,48,0.10);
 }
-.feedback.good{border-color:rgba(34,197,94,.5)}
-.feedback.bad{border-color:rgba(239,68,68,.5)}
+.feedback.good{border-color: rgba(76,175,80,.55)}
+.feedback.bad{border-color: rgba(239,68,68,.55)}
