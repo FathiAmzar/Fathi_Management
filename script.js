@@ -47,12 +47,16 @@ let qIndex = 0;
 let score = 0;
 let checked = false;
 
-// Matching state
-let selectedLeft = null;
-let selectedRight = null;
-let userMatches = {}; // left -> right
-let usedLeft = new Set();
-let usedRight = new Set();
+// Matching state (NOW UID-BASED)
+let leftItems = [];      // [{uid,text}]
+let rightItems = [];     // [{uid,text}]
+let selectedLeftUID = null;
+let selectedRightUID = null;
+
+// userMatches[leftUID] = rightUID
+let userMatches = {};
+let usedLeftUID = new Set();
+let usedRightUID = new Set();
 
 // Ordering state
 let pool = [];
@@ -84,7 +88,6 @@ function clearFeedback() {
 }
 
 async function loadData() {
-  // IMPORTANT: works on GitHub Pages / Live Server. Not file://
   const res = await fetch("quiz-data.json", { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to load quiz-data.json");
   return res.json();
@@ -158,33 +161,42 @@ function renderQuestion() {
   }
 }
 
-// ---------- Matching ----------
+// ---------- Matching (UID FIX) ----------
 function initMatching(q) {
-  selectedLeft = null;
-  selectedRight = null;
+  selectedLeftUID = null;
+  selectedRightUID = null;
   userMatches = {};
-  usedLeft = new Set();
-  usedRight = new Set();
+  usedLeftUID = new Set();
+  usedRightUID = new Set();
 
   ui.leftCol.innerHTML = "";
   ui.rightCol.innerHTML = "";
   ui.pairsBox.innerHTML = "";
 
-  const rightShuffled = shuffle(q.right);
+  // Build UID-based items so duplicates (e.g., Reward) are unique
+  leftItems = q.left.map((text, i) => ({ uid: `L${q.id || qIndex}-${i}`, text }));
+  rightItems = q.right.map((text, i) => ({ uid: `R${q.id || qIndex}-${i}`, text }));
 
-  q.left.forEach(text => {
+  // Shuffle right side only (common for matching)
+  rightItems = shuffle(rightItems);
+
+  // Render left
+  leftItems.forEach(item => {
     const el = document.createElement("div");
     el.className = "item";
-    el.textContent = text;
-    el.onclick = () => selectLeft(text, el);
+    el.textContent = item.text;
+    el.dataset.uid = item.uid;
+    el.onclick = () => selectLeft(item.uid);
     ui.leftCol.appendChild(el);
   });
 
-  rightShuffled.forEach(text => {
+  // Render right
+  rightItems.forEach(item => {
     const el = document.createElement("div");
     el.className = "item";
-    el.textContent = text;
-    el.onclick = () => selectRight(text, el);
+    el.textContent = item.text;
+    el.dataset.uid = item.uid;
+    el.onclick = () => selectRight(item.uid);
     ui.rightCol.appendChild(el);
   });
 
@@ -196,44 +208,46 @@ function clearSelected(col) {
 }
 
 function lockUsed() {
-  ui.leftCol.querySelectorAll(".item").forEach(i => {
-    const t = i.textContent;
-    i.classList.toggle("locked", usedLeft.has(t));
+  ui.leftCol.querySelectorAll(".item").forEach(el => {
+    const uid = el.dataset.uid;
+    el.classList.toggle("locked", usedLeftUID.has(uid));
   });
-  ui.rightCol.querySelectorAll(".item").forEach(i => {
-    const t = i.textContent;
-    i.classList.toggle("locked", usedRight.has(t));
+  ui.rightCol.querySelectorAll(".item").forEach(el => {
+    const uid = el.dataset.uid;
+    el.classList.toggle("locked", usedRightUID.has(uid));
   });
 }
 
-function selectLeft(value, el) {
-  if (checked || usedLeft.has(value)) return;
-  selectedLeft = value;
+function selectLeft(uid) {
+  if (checked || usedLeftUID.has(uid)) return;
+  selectedLeftUID = uid;
   clearSelected(ui.leftCol);
-  el.classList.add("selected");
+  ui.leftCol.querySelector(`[data-uid="${uid}"]`)?.classList.add("selected");
   tryMakePair();
 }
 
-function selectRight(value, el) {
-  if (checked || usedRight.has(value)) return;
-  selectedRight = value;
+function selectRight(uid) {
+  if (checked || usedRightUID.has(uid)) return;
+  selectedRightUID = uid;
   clearSelected(ui.rightCol);
-  el.classList.add("selected");
+  ui.rightCol.querySelector(`[data-uid="${uid}"]`)?.classList.add("selected");
   tryMakePair();
 }
 
 function tryMakePair() {
-  if (!selectedLeft || !selectedRight) return;
+  if (!selectedLeftUID || !selectedRightUID) return;
 
-  // If left already had match, free old right
-  if (userMatches[selectedLeft]) usedRight.delete(userMatches[selectedLeft]);
+  // If left already had a match, free the previous right UID
+  if (userMatches[selectedLeftUID]) {
+    usedRightUID.delete(userMatches[selectedLeftUID]);
+  }
 
-  userMatches[selectedLeft] = selectedRight;
-  usedLeft.add(selectedLeft);
-  usedRight.add(selectedRight);
+  userMatches[selectedLeftUID] = selectedRightUID;
+  usedLeftUID.add(selectedLeftUID);
+  usedRightUID.add(selectedRightUID);
 
-  selectedLeft = null;
-  selectedRight = null;
+  selectedLeftUID = null;
+  selectedRightUID = null;
 
   clearSelected(ui.leftCol);
   clearSelected(ui.rightCol);
@@ -242,30 +256,40 @@ function tryMakePair() {
   renderPairs();
 }
 
+function getLeftText(uid) {
+  return leftItems.find(x => x.uid === uid)?.text ?? "";
+}
+function getRightText(uid) {
+  return rightItems.find(x => x.uid === uid)?.text ?? "";
+}
+
 function renderPairs() {
   ui.pairsBox.innerHTML = "";
   const entries = Object.entries(userMatches);
 
   if (entries.length === 0) {
-    ui.pairsBox.innerHTML = `<div class="subtitle">No pairs yet. Tap Left then Right.</div>`;
+    ui.pairsBox.innerHTML = `<div class="subtitle">No pairs yet. Tap Question then Answer.</div>`;
     return;
   }
 
-  entries.forEach(([l, r]) => {
+  entries.forEach(([lUID, rUID]) => {
+    const lText = getLeftText(lUID);
+    const rText = getRightText(rUID);
+
     const row = document.createElement("div");
     row.className = "pair";
     row.innerHTML = `
       <div>
-        <div><strong>${l}</strong></div>
-        <small>→ ${r}</small>
+        <div><strong>${lText}</strong></div>
+        <small>→ ${rText}</small>
       </div>
       <button class="btn ghost" style="width:auto;padding:8px 10px;">Unpair</button>
     `;
     row.querySelector("button").onclick = () => {
       if (checked) return;
-      usedLeft.delete(l);
-      usedRight.delete(r);
-      delete userMatches[l];
+      usedLeftUID.delete(lUID);
+      usedRightUID.delete(rUID);
+      delete userMatches[lUID];
       lockUsed();
       renderPairs();
     };
@@ -274,15 +298,22 @@ function renderPairs() {
 }
 
 function checkMatching(q) {
-  const total = q.left.length;
+  const total = leftItems.length;
+
   if (Object.keys(userMatches).length < total) {
     setFeedback(`Complete all pairs first (${Object.keys(userMatches).length}/${total}).`, false);
     return false;
   }
 
   let correct = 0;
-  q.left.forEach(l => {
-    if (userMatches[l] === q.correctMatches[l]) correct++;
+
+  // Correctness uses TEXT comparison, so duplicates are fine
+  leftItems.forEach(li => {
+    const chosenRightUID = userMatches[li.uid];
+    const chosenText = getRightText(chosenRightUID);
+    const correctText = q.correctMatches[li.text];
+
+    if (chosenText === correctText) correct++;
   });
 
   score += correct;
