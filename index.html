@@ -2,14 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Management Quiz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Management Revision Quiz</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 id="appTitle"></h1>
-  <div id="quiz"></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">M</div>
+      <div>
+        <div id="appTitle" class="title">Management Revision Quiz</div>
+        <div id="subtitle" class="subtitle">Non-typing • Tap-based</div>
+      </div>
+    </div>
 
-  <script src="script.js"></script>
+    <div class="top-actions">
+      <button id="btnHome" class="btn ghost" title="Back to chapters">Chapters</button>
+      <button id="btnReset" class="btn ghost" title="Reset current chapter">Reset</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- CHAPTER LIST -->
+    <section id="screenChapters" class="screen">
+      <h2 class="h2">Choose a chapter</h2>
+      <div id="chapterList" class="grid"></div>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section id="screenQuiz" class="screen hidden">
+      <div class="status">
+        <div class="pill" id="pillChapter">Chapter</div>
+        <div class="pill" id="pillType">Type</div>
+        <div class="pill" id="pillProgress">Q 1 / 1</div>
+        <div class="pill" id="pillScore">Score 0</div>
+      </div>
+
+      <div class="card">
+        <div id="questionText" class="qtext"></div>
+
+        <!-- Matching UI -->
+        <div id="matchingUI" class="hidden">
+          <div class="match-wrap">
+            <div>
+              <div class="label">Left</div>
+              <div id="leftList" class="list"></div>
+            </div>
+            <div>
+              <div class="label">Right</div>
+              <div id="rightList" class="list"></div>
+            </div>
+          </div>
+
+          <div class="pairing">
+            <div class="label">Your pairs</div>
+            <div id="pairsView" class="pairs"></div>
+          </div>
+        </div>
+
+        <!-- Ordering UI -->
+        <div id="orderingUI" class="hidden">
+          <div class="label">Tap items to build the correct order</div>
+          <div id="orderPool" class="chips"></div>
+
+          <div class="label" style="margin-top:12px;">Your order</div>
+          <div id="orderAnswer" class="chips"></div>
+
+          <div class="row">
+            <button id="btnUndo" class="btn ghost">Undo</button>
+            <button id="btnClearOrder" class="btn ghost">Clear</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="btnCheck" class="btn primary">Check</button>
+          <button id="btnNext" class="btn" disabled>Next</button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section id="screenSummary" class="screen hidden">
+      <div class="card">
+        <h2 class="h2">Chapter completed 🎉</h2>
+        <p id="summaryText" class="subtitle"></p>
+        <div class="row">
+          <button id="btnRetry" class="btn primary">Retry Chapter</button>
+          <button id="btnBackChapters" class="btn ghost">Back to Chapters</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Tip: On GitHub Pages, place <code>index.html</code>, <code>style.css</code>, <code>app.js</code>, and <code>quiz-data.json</code> in the same folder.
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
