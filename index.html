@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Management Revision Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Management Quiz</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,66 +11,67 @@
     <div class="brand">
       <div class="logo">M</div>
       <div>
-        <div id="appTitle" class="title">Management Revision Quiz</div>
-        <div id="subtitle" class="subtitle">Non-typing • Tap-based</div>
+        <div id="appTitle" class="title">Loading…</div>
+        <div class="subtitle">Non-typing • Matching + Ordering</div>
       </div>
     </div>
-
-    <div class="top-actions">
-      <button id="btnHome" class="btn ghost" title="Back to chapters">Chapters</button>
-      <button id="btnReset" class="btn ghost" title="Reset current chapter">Reset</button>
+    <div class="actions">
+      <button id="btnChapters" class="btn ghost">Chapters</button>
+      <button id="btnRestart" class="btn ghost" disabled>Restart</button>
     </div>
   </header>
 
   <main class="container">
-    <!-- CHAPTER LIST -->
-    <section id="screenChapters" class="screen">
-      <h2 class="h2">Choose a chapter</h2>
-      <div id="chapterList" class="grid"></div>
+    <!-- Chapters -->
+    <section id="chaptersScreen">
+      <h2>Choose a chapter</h2>
+      <div id="chaptersList" class="grid"></div>
+      <div class="hint">
+        If you see “Failed to load JSON”, don’t open by double click.
+        Use GitHub Pages or VSCode Live Server.
+      </div>
     </section>
 
-    <!-- QUIZ SCREEN -->
-    <section id="screenQuiz" class="screen hidden">
+    <!-- Quiz -->
+    <section id="quizScreen" class="hidden">
       <div class="status">
-        <div class="pill" id="pillChapter">Chapter</div>
-        <div class="pill" id="pillType">Type</div>
-        <div class="pill" id="pillProgress">Q 1 / 1</div>
-        <div class="pill" id="pillScore">Score 0</div>
+        <span id="pillChapter" class="pill"></span>
+        <span id="pillProgress" class="pill"></span>
+        <span id="pillScore" class="pill"></span>
+        <span id="pillType" class="pill"></span>
       </div>
 
       <div class="card">
         <div id="questionText" class="qtext"></div>
 
-        <!-- Matching UI -->
+        <!-- Matching -->
         <div id="matchingUI" class="hidden">
-          <div class="match-wrap">
+          <div class="matchGrid">
             <div>
               <div class="label">Left</div>
-              <div id="leftList" class="list"></div>
+              <div id="leftCol" class="col"></div>
             </div>
             <div>
               <div class="label">Right</div>
-              <div id="rightList" class="list"></div>
+              <div id="rightCol" class="col"></div>
             </div>
           </div>
 
-          <div class="pairing">
-            <div class="label">Your pairs</div>
-            <div id="pairsView" class="pairs"></div>
-          </div>
+          <div class="label" style="margin-top:12px;">Your pairs</div>
+          <div id="pairsBox" class="pairs"></div>
         </div>
 
-        <!-- Ordering UI -->
+        <!-- Ordering -->
         <div id="orderingUI" class="hidden">
-          <div class="label">Tap items to build the correct order</div>
-          <div id="orderPool" class="chips"></div>
+          <div class="label">Tap items to build the order</div>
+          <div id="poolBox" class="chips"></div>
 
-          <div class="label" style="margin-top:12px;">Your order</div>
-          <div id="orderAnswer" class="chips"></div>
+          <div class="label" style="margin-top:12px;">Your order (tap to remove)</div>
+          <div id="answerBox" class="chips"></div>
 
           <div class="row">
             <button id="btnUndo" class="btn ghost">Undo</button>
-            <button id="btnClearOrder" class="btn ghost">Clear</button>
+            <button id="btnClear" class="btn ghost">Clear</button>
           </div>
         </div>
 
@@ -83,23 +84,19 @@
       </div>
     </section>
 
-    <!-- SUMMARY -->
-    <section id="screenSummary" class="screen hidden">
+    <!-- Summary -->
+    <section id="summaryScreen" class="hidden">
       <div class="card">
-        <h2 class="h2">Chapter completed 🎉</h2>
+        <h2>Done 🎉</h2>
         <p id="summaryText" class="subtitle"></p>
         <div class="row">
-          <button id="btnRetry" class="btn primary">Retry Chapter</button>
-          <button id="btnBackChapters" class="btn ghost">Back to Chapters</button>
+          <button id="btnRetry" class="btn primary">Retry</button>
+          <button id="btnBack" class="btn ghost">Back to Chapters</button>
         </div>
       </div>
     </section>
-
-    <footer class="footer">
-      Tip: On GitHub Pages, place <code>index.html</code>, <code>style.css</code>, <code>app.js</code>, and <code>quiz-data.json</code> in the same folder.
-    </footer>
   </main>
 
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
