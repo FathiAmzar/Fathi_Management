@@ -1,5 +1,5 @@
 :root{
-  /* Your palette */
+  /* Scientifically ideal palette */
   --bg: #F4F7FB;        /* very light blue-gray */
   --primary: #3A6EA5;   /* calm blue */
   --secondary: #4CAF50; /* soft green */
@@ -150,3 +150,43 @@ body{
 }
 .feedback.good{border-color: rgba(76,175,80,.55)}
 .feedback.bad{border-color: rgba(239,68,68,.55)}
+
+/* ✅ After-check marking */
+.item.correct{
+  border-color: rgba(76,175,80,.7);
+  background: rgba(76,175,80,.10);
+}
+.item.wrong{
+  border-color: rgba(239,68,68,.7);
+  background: rgba(239,68,68,.08);
+}
+
+.chip.correct{
+  border-color: rgba(76,175,80,.7);
+  background: rgba(76,175,80,.10);
+}
+.chip.wrong{
+  border-color: rgba(239,68,68,.7);
+  background: rgba(239,68,68,.08);
+}
+
+.tag{
+  display:inline-block;
+  font-size:12px;
+  font-weight:800;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background: rgba(31,41,51,0.03);
+  white-space: nowrap;
+}
+.tag.good{
+  border-color: rgba(76,175,80,.65);
+  background: rgba(76,175,80,.12);
+  color: var(--text);
+}
+.tag.bad{
+  border-color: rgba(239,68,68,.65);
+  background: rgba(239,68,68,.10);
+  color: var(--text);
+}
