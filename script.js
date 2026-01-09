@@ -47,7 +47,7 @@ let qIndex = 0;
 let score = 0;
 let checked = false;
 
-// Matching state (NOW UID-BASED)
+// --- Matching state (UID-based to avoid duplicate text bug) ---
 let leftItems = [];      // [{uid,text}]
 let rightItems = [];     // [{uid,text}]
 let selectedLeftUID = null;
@@ -58,7 +58,7 @@ let userMatches = {};
 let usedLeftUID = new Set();
 let usedRightUID = new Set();
 
-// Ordering state
+// --- Ordering state ---
 let pool = [];
 let answer = [];
 
@@ -106,6 +106,7 @@ function renderChapters() {
     card.onclick = () => startChapter(ch.chapterId);
     ui.chaptersList.appendChild(card);
   });
+
   ui.btnRestart.disabled = true;
   show("chapters");
 }
@@ -150,6 +151,13 @@ function renderQuestion() {
   ui.matchingUI.classList.add("hidden");
   ui.orderingUI.classList.add("hidden");
 
+  // clear markings from previous question
+  ui.leftCol.innerHTML = "";
+  ui.rightCol.innerHTML = "";
+  ui.pairsBox.innerHTML = "";
+  ui.poolBox.innerHTML = "";
+  ui.answerBox.innerHTML = "";
+
   if (q.type === "matching") {
     ui.matchingUI.classList.remove("hidden");
     initMatching(q);
@@ -161,7 +169,7 @@ function renderQuestion() {
   }
 }
 
-// ---------- Matching (UID FIX) ----------
+// ---------- Matching (UID + after-check correctness) ----------
 function initMatching(q) {
   selectedLeftUID = null;
   selectedRightUID = null;
@@ -173,14 +181,11 @@ function initMatching(q) {
   ui.rightCol.innerHTML = "";
   ui.pairsBox.innerHTML = "";
 
-  // Build UID-based items so duplicates (e.g., Reward) are unique
+  // UID-based items (prevents duplicate text issues)
   leftItems = q.left.map((text, i) => ({ uid: `L${q.id || qIndex}-${i}`, text }));
   rightItems = q.right.map((text, i) => ({ uid: `R${q.id || qIndex}-${i}`, text }));
-
-  // Shuffle right side only (common for matching)
   rightItems = shuffle(rightItems);
 
-  // Render left
   leftItems.forEach(item => {
     const el = document.createElement("div");
     el.className = "item";
@@ -190,7 +195,6 @@ function initMatching(q) {
     ui.leftCol.appendChild(el);
   });
 
-  // Render right
   rightItems.forEach(item => {
     const el = document.createElement("div");
     el.className = "item";
@@ -200,7 +204,7 @@ function initMatching(q) {
     ui.rightCol.appendChild(el);
   });
 
-  renderPairs();
+  renderPairsLive();
 }
 
 function clearSelected(col) {
@@ -209,12 +213,10 @@ function clearSelected(col) {
 
 function lockUsed() {
   ui.leftCol.querySelectorAll(".item").forEach(el => {
-    const uid = el.dataset.uid;
-    el.classList.toggle("locked", usedLeftUID.has(uid));
+    el.classList.toggle("locked", usedLeftUID.has(el.dataset.uid));
   });
   ui.rightCol.querySelectorAll(".item").forEach(el => {
-    const uid = el.dataset.uid;
-    el.classList.toggle("locked", usedRightUID.has(uid));
+    el.classList.toggle("locked", usedRightUID.has(el.dataset.uid));
   });
 }
 
@@ -237,7 +239,7 @@ function selectRight(uid) {
 function tryMakePair() {
   if (!selectedLeftUID || !selectedRightUID) return;
 
-  // If left already had a match, free the previous right UID
+  // If left already matched, free old right
   if (userMatches[selectedLeftUID]) {
     usedRightUID.delete(userMatches[selectedLeftUID]);
   }
@@ -253,7 +255,7 @@ function tryMakePair() {
   clearSelected(ui.rightCol);
 
   lockUsed();
-  renderPairs();
+  renderPairsLive();
 }
 
 function getLeftText(uid) {
@@ -263,7 +265,7 @@ function getRightText(uid) {
   return rightItems.find(x => x.uid === uid)?.text ?? "";
 }
 
-function renderPairs() {
+function renderPairsLive() {
   ui.pairsBox.innerHTML = "";
   const entries = Object.entries(userMatches);
 
@@ -273,15 +275,12 @@ function renderPairs() {
   }
 
   entries.forEach(([lUID, rUID]) => {
-    const lText = getLeftText(lUID);
-    const rText = getRightText(rUID);
-
     const row = document.createElement("div");
     row.className = "pair";
     row.innerHTML = `
       <div>
-        <div><strong>${lText}</strong></div>
-        <small>→ ${rText}</small>
+        <div><strong>${getLeftText(lUID)}</strong></div>
+        <small>→ ${getRightText(rUID)}</small>
       </div>
       <button class="btn ghost" style="width:auto;padding:8px 10px;">Unpair</button>
     `;
@@ -291,8 +290,35 @@ function renderPairs() {
       usedRightUID.delete(rUID);
       delete userMatches[lUID];
       lockUsed();
-      renderPairs();
+      renderPairsLive();
     };
+    ui.pairsBox.appendChild(row);
+  });
+}
+
+function renderPairsAfterCheck(q) {
+  ui.pairsBox.innerHTML = "";
+
+  Object.entries(userMatches).forEach(([lUID, rUID]) => {
+    const lText = getLeftText(lUID);
+    const rText = getRightText(rUID);
+    const correctText = q.correctMatches[lText];
+    const isCorrect = rText === correctText;
+
+    const row = document.createElement("div");
+    row.className = "pair";
+    row.innerHTML = `
+      <div>
+        <div><strong>${lText}</strong></div>
+        <small>→ ${rText}</small>
+        <div class="subtitle" style="margin-top:6px;">
+          Correct answer: <strong>${correctText}</strong>
+        </div>
+      </div>
+      <span class="tag ${isCorrect ? "good" : "bad"}">
+        ${isCorrect ? "✅ Correct" : "❌ Wrong"}
+      </span>
+    `;
     ui.pairsBox.appendChild(row);
   });
 }
@@ -305,25 +331,52 @@ function checkMatching(q) {
     return false;
   }
 
-  let correct = 0;
+  // clear old marking
+  ui.leftCol.querySelectorAll(".item").forEach(el => el.classList.remove("correct", "wrong"));
+  ui.rightCol.querySelectorAll(".item").forEach(el => el.classList.remove("correct", "wrong"));
 
-  // Correctness uses TEXT comparison, so duplicates are fine
+  let correct = 0;
+  const rightStatusByUID = new Map();
+
+  // Check each left item (compare TEXT; UID avoids duplicate locking)
   leftItems.forEach(li => {
     const chosenRightUID = userMatches[li.uid];
     const chosenText = getRightText(chosenRightUID);
     const correctText = q.correctMatches[li.text];
 
-    if (chosenText === correctText) correct++;
+    const isCorrect = chosenText === correctText;
+    if (isCorrect) correct++;
+
+    // mark left
+    const leftEl = ui.leftCol.querySelector(`[data-uid="${li.uid}"]`);
+    if (leftEl) leftEl.classList.add(isCorrect ? "correct" : "wrong");
+
+    // mark right by UID
+    rightStatusByUID.set(chosenRightUID, isCorrect ? "correct" : "wrong");
   });
+
+  // apply right marking
+  ui.rightCol.querySelectorAll(".item").forEach(el => {
+    const status = rightStatusByUID.get(el.dataset.uid);
+    if (!status) return;
+    el.classList.add(status);
+  });
+
+  // show ✅/❌ and correct answers in the pairs box
+  renderPairsAfterCheck(q);
 
   score += correct;
   updatePills(q);
 
-  setFeedback(`Correct pairs: <strong>${correct}/${total}</strong> (+${correct})`, correct === total);
+  setFeedback(
+    `Correct pairs: <strong>${correct}/${total}</strong> (+${correct})`,
+    correct === total
+  );
+
   return true;
 }
 
-// ---------- Ordering ----------
+// ---------- Ordering (with ✅/❌ and correct order shown) ----------
 function initOrdering(q) {
   pool = shuffle(q.correctOrder);
   answer = [];
@@ -392,20 +445,40 @@ function drawAnswer() {
 
 function checkOrdering(q) {
   const total = q.correctOrder.length;
+
   if (answer.length < total) {
     setFeedback(`Complete the order first (${answer.length}/${total}).`, false);
     return false;
   }
 
+  // clear old marking
+  ui.answerBox.querySelectorAll(".chip").forEach(el => el.classList.remove("correct", "wrong"));
+
   let correct = 0;
-  for (let i = 0; i < total; i++) {
-    if (answer[i] === q.correctOrder[i]) correct++;
-  }
+
+  // mark each position
+  ui.answerBox.querySelectorAll(".chip").forEach((chipEl, i) => {
+    const isCorrect = answer[i] === q.correctOrder[i];
+    if (isCorrect) {
+      correct++;
+      chipEl.classList.add("correct");
+    } else {
+      chipEl.classList.add("wrong");
+    }
+  });
 
   score += correct;
   updatePills(q);
 
-  setFeedback(`Correct positions: <strong>${correct}/${total}</strong> (+${correct})`, correct === total);
+  // show correct order
+  const correctOrderHtml = q.correctOrder.map((x, i) => `${i + 1}. ${x}`).join("<br>");
+  setFeedback(
+    `Correct positions: <strong>${correct}/${total}</strong> (+${correct})<br><br>
+     <div class="subtitle">Correct order:</div>
+     <div style="margin-top:6px;">${correctOrderHtml}</div>`,
+    correct === total
+  );
+
   return true;
 }
 
@@ -423,10 +496,17 @@ function onCheck() {
   checked = true;
   ui.btnCheck.disabled = true;
   ui.btnNext.disabled = false;
+
+  // lock all items after check
+  if (q.type === "matching") {
+    ui.leftCol.querySelectorAll(".item").forEach(el => el.classList.add("locked"));
+    ui.rightCol.querySelectorAll(".item").forEach(el => el.classList.add("locked"));
+  }
 }
 
 function onNext() {
   if (!checked) return;
+
   if (qIndex < currentChapter.questions.length - 1) {
     qIndex++;
     renderQuestion();
